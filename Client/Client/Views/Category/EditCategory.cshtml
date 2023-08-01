@@ -1,0 +1,16 @@
+@model CategoryViewModel
+
+<h2>Редактирование продукта</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.Hidden("_method", "PUT")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" asp-controller="Category" asp-action="EditCategory" class="btn btn-primary" >Редактировать</button>
+}

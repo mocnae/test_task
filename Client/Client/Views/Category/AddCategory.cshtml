@@ -1,0 +1,15 @@
+@model CategoryViewModel
+
+<h2>Добавление категории</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" asp-controller="Category" asp-action="AddCategory" class="btn btn-primary" >Добавить категорию</button>
+}

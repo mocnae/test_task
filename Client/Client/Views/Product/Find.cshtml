@@ -1,0 +1,16 @@
+@model FindViewModel
+
+<h2>Поиск</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.Hidden("_method", "PUT")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Str)
+        @Html.TextBoxFor(m => m.Str, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Str, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" asp-controller="Product" asp-action="FindProducts" class="btn btn-primary" >Найти</button>
+}

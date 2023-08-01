@@ -1,0 +1,18 @@
+@model FilterByCategoryViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryId)
+            <select asp-for="CategoryId" class="form-control">
+                <option value="">Выберите категорию...</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Description</option>
+                }
+            </select>
+        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" asp-controller="Product" asp-action="FilterByCategory" class="btn btn-primary">Отфильтровать</button>
+}

@@ -1,0 +1,48 @@
+@model ProductViewModel
+
+<h2>Добавить новый продукт</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryId)
+            <select asp-for="CategoryId" class="form-control">
+                <option value="">Выберите категорию...</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Id">@category.Description</option>
+                }
+            </select>
+        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cost)
+        @Html.TextBoxFor(m => m.Cost, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Cost, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GeneralNote)
+        @Html.TextBoxFor(m => m.GeneralNote, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GeneralNote, "", new { @class = "text-danger" })
+    </div>
+    @if (ViewBag.User == "advanced")
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.SpecialNote)
+            @Html.TextBoxFor(m => m.SpecialNote, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.SpecialNote, "", new { @class = "text-danger" })
+        </div>
+    }
+    <button type="submit" asp-controller="Product" asp-action="AddProduct" class="btn btn-primary">Добавить</button>
+}

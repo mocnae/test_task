@@ -1,0 +1,43 @@
+
+button {
+    padding-top: 20 px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.product-card{
+    height: 60px;
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-success{
+    margin: 0 auto;
+    display: flex;
+    justify-content:center;
+}
+
+.btn-primary{
+ margin: 5px;
+}
+
+.btn-danger{
+ margin: 5px;
+}
+

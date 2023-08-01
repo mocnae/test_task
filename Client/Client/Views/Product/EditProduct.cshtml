@@ -1,0 +1,44 @@
+@model ProductViewModel
+
+<h2>Редактирование продукта</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.Hidden("_method", "PUT")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @value="HUI"})
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CategoryId)
+        @Html.TextBoxFor(m => m.CategoryId, new { @class = "form-control", @value=@ViewBag.Product.CategoryId })
+        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @value=ViewBag.Product.Description })
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cost)
+        @Html.TextBoxFor(m => m.Cost, new { @class = "form-control", value=@ViewBag.Product.Cost })
+        @Html.ValidationMessageFor(m => m.Cost, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GeneralNote)
+        @Html.TextBoxFor(m => m.GeneralNote, new { @class = "form-control", value=@ViewBag.Product.GeneralNote })
+        @Html.ValidationMessageFor(m => m.GeneralNote, "", new { @class = "text-danger" })
+    </div>
+    @if (ViewBag.User == "advanced")
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.SpecialNote)
+            @Html.TextBoxFor(m => m.SpecialNote, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.SpecialNote, "", new { @class = "text-danger", value=@ViewBag.Product.SpecialNote })
+        </div>
+    }
+    <button type="submit" asp-controller="Product" asp-action="EditProduct" class="btn btn-primary" >Редактировать</button>
+}

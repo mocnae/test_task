@@ -1,0 +1,29 @@
+@model RegisterViewModel
+
+<h2>Регистрация</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password1)
+        @Html.PasswordFor(m => m.Password1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password1, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password2)
+        @Html.PasswordFor(m => m.Password2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password2, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+}

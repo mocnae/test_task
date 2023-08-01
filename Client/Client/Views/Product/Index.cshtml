@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Categories";
+    ViewData["UserRoles"] = "user, advanced";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+        <div class="filters">
+            <p>Filters</p>
+            @Html.Partial("FilterByCategory", ViewBag.Categories as FilterByCategoryViewModel)
+            @Html.Partial("Find", ViewBag.Categories as FindViewModel)
+        </div>
+        <div class="catalog">
+            <div class="product-container">
+                    @foreach (var product in ViewBag.Products)
+                    {
+                            <div class="product-card"> <!-- Карточка продукта 1 -->
+
+                                <h3>@product.Name</h3>
+                                <h5>@product.CategoryName</h5>
+
+                                <div class="product-info">
+
+                                    <p>Описание: @product.Description</p>
+                                    <p>Цена: @product.Cost</p>
+                                    <p>Общая заметка: @product.GeneralNote</p>
+
+                                        @if (ViewBag.User == "advanced")
+                                        {
+                                            <p>Специальная заметка:@product.SpecialNote</p>
+                                        }
+                                    </div>
+
+                                <div class="button-product">
+                                    <a asp-controller="Product" asp-action="EditProduct" asp-route-id=@product.Id class="btn btn-primary">Change</a>
+                                    @if (ViewBag.User == "advanced")
+                                    {
+                                        <a asp-controller="Product" asp-action="DeleteProduct" asp-route-id=@product.Id class="btn btn-danger">Delete</a>
+                                    }
+                                </div>
+                            </div>
+                    }
+            </div>
+        </div>       
+    </div>
+@if ("user, advanced".Contains(ViewBag.User))
+        {
+            <a asp-action="AddProduct" class="btn btn-success">Добавить продукт</a>
+        }
+
